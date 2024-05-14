@@ -15,7 +15,7 @@ nvm i
 To use the correct node version run
 nvm use
 
-1. **Install dependencies**
+2. **Install dependencies**
 
 Next you'll need to install this app
 
@@ -23,7 +23,7 @@ Next you'll need to install this app
 npm install
 ```
 
-1. **Run the backend**
+3. **Run the backend**
 
 The backend is a node/express server. Everything to do with the server lives in `/server`.
 
@@ -33,7 +33,7 @@ Terminal tab #1:
 npm run backend
 ```
 
-1. **Run the frontend**
+4. **Run the frontend**
 
 Nextjs is used to bundle and serve our app. Everything to do with the frontend lives in `/client`.
 
@@ -43,16 +43,14 @@ Terminal tab #2:
 npm run frontend
 
 
-The tech stack I chose is react, nextjs and typescript in the front end with mui for design. I used node/express and typescript for the backend
-I used swagger for the api documentation
-and jest for testing
+The tech stack I chose is React, Next.js, and TypeScript for the frontend, with Material-UI (MUI) for design. For the backend, I used Node.js/Express and TypeScript. I utilized Swagger for API documentation and Jest for testing.
 
-I used next and react because they offer a boiler plate and it was easy to set up.  Also next offered alot of powerful build in feature such as ssr and easily deployment on vercel
+I chose Next.js and React due to their boilerplate setup and ease of use. Next.js provides powerful built-in features such as server-side rendering (SSR) and seamless deployment on Vercel.
 
-I used node and express because it help create api easily and help with development time
+Node.js and Express were selected for their ability to create APIs quickly and aid in development efficiency.
 
-Im wasnt sure how should the data be proccess like what was being ask, so i simplified the data in the backend,  I removed some nexting of the object and sort the data by priority desc.
+I was unsure about the data processing requirements, so I simplified the backend data by removing unnecessary nesting and sorting it by priority in descending order.
 
-The challenge I faced was the setting up.  I havent set up an application from stratch for a long time and creating the jest config, tsconfig, eslint etc too longer than expected and prob alot of the thing there might not be needed.
+The main challenge I faced was the initial setup. It had been a while since I set up an application from scratch, and configuring Jest, tsconfig, ESLint, etc., took longer than expected. Some configurations might not have been necessary.
 
-Some of the things I would add on if I had more time is the lazing loading. Instead of pagination I would implement lazy loading that would load as  you scroll down. Another one is sorting, I would give user the option to sort by date, name, etc.  And the comment section, I would like the style it more like making it a dropdown when click or show the most popular one and rest behind a show more flag.
+If I had more time, I would implement lazy loading instead of pagination for improved user experience. I would also add sorting options for users to sort by date, name, etc. Additionally, I would enhance the comment section by styling it as a dropdown when clicked or displaying the most popular comments with the rest hidden behind a "show more" button.
