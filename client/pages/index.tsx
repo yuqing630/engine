@@ -26,13 +26,16 @@ const Home = (props: HomePageProps) => {
   const paginatedContentCards = paginate(contentCards, currentPage, pageSize);
   return (
     <>
-      <Typography sx={{
-        fontSize: {
-          lg: 50,
-          xs: 30
-        }
-      }}> Content Cards</Typography>
-      <Box sx={{ display: 'flex', flexDirection: 'row', padding: '20px', flexWrap: 'wrap' }}>
+      <div>
+        <Typography sx={{
+          fontSize: {
+            lg: 50,
+            xs: 30
+          }, textAlign: 'center'
+        }}> Content Cards</Typography>
+      </div>
+
+      <Box sx={{ display: 'flex', flexDirection: 'row', padding: '20px', flexWrap: 'wrap', gap: '20px' }}>
         {paginatedContentCards.map((card) => (
           <ContentCard card={card} />
         ))}
