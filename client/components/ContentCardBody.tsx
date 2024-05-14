@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, Typography, } from '@mui/material';
-import { ContentCardType } from '@/types/types';
 
 export default function ContentCardBody(props: { body: string }) {
     const [expanded, setExpanded] = useState(false);
     const { body } = props
+
+    const [showButton, setShowButton] = useState(false);
+    const bodyRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (bodyRef.current) {
+            const { height, lineHeight } = window.getComputedStyle(bodyRef.current);
+            const maxHeight = parseInt(height) || 0;
+            const numLines = Math.round(maxHeight / parseInt(lineHeight));
+            setShowButton(numLines >= 3);
+        }
+    }, [body]);
 
     const handleToggleExpanded = () => {
         setExpanded(!expanded);
@@ -12,19 +23,18 @@ export default function ContentCardBody(props: { body: string }) {
 
     return (
         <>
-            <Typography sx={{
+            <Typography ref={bodyRef} sx={{
                 display: '-webkit-box',
                 WebkitLineClamp: expanded ? 'unset' : 3,
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
                 overflowWrap: 'break-word',
-                textOverflow: 'ellipsis',
             }}>
                 {body}
             </Typography>
-            <Button onClick={handleToggleExpanded} color="primary">
+            {showButton && <Button onClick={handleToggleExpanded} color="primary">
                 Read {expanded ? 'less' : 'more'}
-            </Button>
+            </Button>}
         </>
     );
 }

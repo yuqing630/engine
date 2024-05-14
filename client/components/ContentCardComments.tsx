@@ -1,8 +1,8 @@
 import React from 'react';
 import CardHeader from '@mui/material/CardHeader';
-import { IconButton, Typography, Avatar, Grid, Box } from '@mui/material';
+import { IconButton, Typography, Avatar, Box } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { Comment } from '@/types/types';
+import { Comment } from '../types/types';
 
 export default function ContentCardComment(props: { comments: Comment[] }) {
     const { comments } = props

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Typography, Grid, Box } from '@mui/material';
-import { ContentCardType } from '@/types/types';
 
 export default function ContentCardInfo(props: { title: string, author: string, subtitle: string }) {
     const { title, author, subtitle } = props

@@ -1,13 +1,17 @@
 import axios from "axios";
 import express, { Express, Request, Response } from "express";
 import cors from "cors";
-import { processData } from "../utils/utils";
+import helmet from "helmet";
+import { processData } from "./utils/utils";
+import pino from "pino";
 
 
 const app: Express = express();
+app.use(helmet());
+
+const logger = pino()
 
 const port = process.env.PORT || 5000;
-
 const url = process.env.contentUrl || 'https://stoplight.io/mocks/engine/fullstack-spec/52502230/content'
 
 app.get("/", (req: Request, res: Response) => {
@@ -23,12 +27,13 @@ app.get('/api/content', cors(), async (req: Request, res: Response) => {
     res.status(200).json(normalizeData);
 
   } catch (error) {
-    console.log(error)
+    logger.error(error)
+
     res.status(500).json({ message: 'Error fetching data from API' });
   }
 
 })
 
 app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+  logger.info(`[server]: Server is running at http://localhost:${port}`)
 });

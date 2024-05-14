@@ -1,0 +1,102 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Swagger Petstore - OpenAPI 3.0",
+    "description": "This is a simple get content api",
+    "termsOfService": "http://swagger.io/terms/",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.11"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
+    }
+  ],
+  "paths": {
+    "/api/content": {
+      "get": {
+        "tags": [
+          "content feed"
+        ],
+        "summary": "Get all contents sorted by priority",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ContentFeed"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ContentFeed": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "comments": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "author": {
+                    "type": "string"
+                  },
+                  "likes": {
+                    "type": "number"
+                  },
+                  "profilePic": {
+                    "type": "string"
+                  },
+                  "text": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "id": {
+              "type": "string"
+            },
+            "imageUri": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            },
+            "subTitle": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "author": {
+              "type": "string"
+            },
+            "priority": {
+              "type": "number"
+            },
+            "publishDate": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

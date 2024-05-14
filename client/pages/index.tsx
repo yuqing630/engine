@@ -3,18 +3,27 @@ import { GetServerSideProps } from 'next';
 import Box from '@mui/material/Box'
 import ContentCard from '../components/ContentCard'
 import { Typography } from '@mui/material';
-import { ContentCardType } from '@/types/types';
+import { ContentCardType } from '../types/types';
+import { useState } from 'react';
+import { paginate } from '../utils/utils';
+import Pagination from '../components/Pagination';
+import { fetchContentCards } from '../utils/helper';
 
 
-
-
-type HomePageProps = {
+export type HomePageProps = {
   contentCards: ContentCardType[] | []
 }
 
 const Home = (props: HomePageProps) => {
   const { contentCards } = props
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+
+  const onPageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+  const paginatedContentCards = paginate(contentCards, currentPage, pageSize);
   return (
     <>
       <Typography sx={{
@@ -24,10 +33,16 @@ const Home = (props: HomePageProps) => {
         }
       }}> Content Cards</Typography>
       <Box sx={{ display: 'flex', flexDirection: 'row', padding: '20px', flexWrap: 'wrap' }}>
-        {contentCards.map((card) => (
+        {paginatedContentCards.map((card) => (
           <ContentCard card={card} />
         ))}
       </Box>
+      <Pagination
+        totalItems={contentCards.length}
+        currentPage={currentPage}
+        pageSize={pageSize}
+        onPageChange={onPageChange}
+      />
     </>
 
   );
@@ -35,9 +50,9 @@ const Home = (props: HomePageProps) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const response: any = await fetch("http://localhost:5000/api/content");
-    const data = await response.json();
-    return { props: { contentCards: data || [] } };
+    const contentCards = await fetchContentCards();
+
+    return { props: { contentCards } };
   } catch (error) {
     console.error('Error fetching data:', error);
     return { props: { data: [] } };

@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import { Box } from '@mui/material';
-import { ContentCardType } from '@/types/types';
+import { ContentCardType } from '../types/types';
 import ContentCardInfo from './ContentCardInfo';
 import ContentCardBody from './ContentCardBody';
 import ContentCardComment from './ContentCardComments';
