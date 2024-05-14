@@ -41,7 +41,7 @@ Terminal tab #2:
 
 ```sh
 npm run frontend
-
+```
 
 The tech stack I chose is React, Next.js, and TypeScript for the frontend, with Material-UI (MUI) for design. For the backend, I used Node.js/Express and TypeScript. I utilized Swagger for API documentation and Jest for testing.
 
